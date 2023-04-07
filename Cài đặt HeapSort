@@ -1,0 +1,79 @@
+#include <iostream> //https://www.levandong.com/thuat-toan-heapsort/
+#include <vector>
+#include <cmath>
+using namespace std;
+
+void swap(int &a, int &b)
+{
+    int temp = b;
+    b = a;
+    a = temp;
+}
+void insertHeap(int *&arr,const int &parent,const int &n)// lan truy?n ngu?c trong heap tree.
+{
+
+    if (parent > floor(n / 2. - 1))// T?i node lá thì d?ng.
+    {
+        return;
+    }
+
+    int childLeft = parent * 2 + 1;//Node lá trái
+    int childRight = parent * 2 + 2;//Node lá ph?i
+    if (arr[parent] < arr[childLeft] && arr[parent] < arr[childRight] && childRight < n && childLeft < n)
+    {
+        int temp = arr[childLeft] < arr[childRight] ? childRight : childLeft;
+        swap(arr[parent], arr[temp]);
+        insertHeap(arr, temp, n);
+    }
+    else if (arr[parent] < arr[childRight] && childRight < n)
+    {
+        swap(arr[parent], arr[childRight]);
+        insertHeap(arr, childRight, n);
+    }
+    else if (arr[parent] < arr[childLeft] && childLeft < n)
+    {
+        swap(arr[parent], arr[childLeft]);
+        insertHeap(arr, childRight, n);
+    }
+}
+
+void createHeap(int *&a,const int &n) //T?o ra heap tree
+{
+    for (int i = floor(((n / 2.) - 1)); i >= 0; --i)
+    {
+        insertHeap(a, i, n);
+    }
+}
+
+void heapSort(int *&a, int n){
+    for(int i = n -1; i > 0; i--){
+
+        createHeap(a,n--);
+        swap(a[0], a[i]);
+    }
+
+}
+
+int main()
+{
+    int n = 3;
+    cout << "Input size: ";
+    cin >> n;
+    int *a = new int[n];
+    cout << "Input array: ";
+    if (a != NULL)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+        }
+    }
+
+    heapSort(a, n);
+
+    for(int i = 0 ; i < n; i++){
+        cout << a[i] << " ";
+    }
+    delete[] a;
+    return 0;
+}
