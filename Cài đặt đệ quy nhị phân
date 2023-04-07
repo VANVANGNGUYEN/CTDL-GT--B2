@@ -1,0 +1,24 @@
+https://viblo.asia/p/de-quy-va-giai-thuat-de-quy-gGJ5969JKX2
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void recursion(int X)
+{
+    if (X == 1) // Ph?n neo.
+        cout << X; 
+    else 
+    {
+        if (X % 2 == 0)
+        {
+            recursion(X / 2); // G?i d? quy gi?i bài toán v?i X/2.
+            
+            cout << " * 2 "; // Vi?t thêm phép toán * 2.
+        }
+        else 
+        {
+            recursion(3 * X + 1); // G?i d? quy gi?i bài toán v?i (3.X + 1).
+            
+            cout << " div 3 "; // Vi?t thêm phép toán div 3.
+        }
+    }
