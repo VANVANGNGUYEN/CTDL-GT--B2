@@ -1,0 +1,20 @@
+# CTDL-GT--B2
+int BinarySearch(int A[], int n, int x)  //https://topdev.vn/blog/thuat-toan-tim-kiem-trong-c/
+{
+    int left = 0;
+    int right = n - 1;
+    int mid;
+    while (left <= right)
+    {
+        mid = (left + right) / 2;
+        if (A[mid] == x)
+            return mid; // tìm th?y x, tr? v? mid là v? trí c?a x trong m?ng A
+        if (A[mid] > x)
+            right = mid - 1; // Gi?i h?n kho?ng tìm ki?m l?i là n?a kho?ng tru?c
+        else if (A[mid] < x)
+            left = mid + 1; // Gi?i h?n kho?ng tìm ki?m l?i là n?a kho?ng sau
+    }
+    return -1; // không tìm th?y x
+}
+
+
