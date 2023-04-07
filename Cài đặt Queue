@@ -1,0 +1,19 @@
+https://blog.luyencode.net/hang-doi-queue/
+
+void Enqueue(int queue[], int element, int& rear, int arraySize) { // thêm vào cu?i hàng d?i
+    if(rear == arraySize)            // Queue is full
+            printf("OverFlow\n");
+    else{
+         queue[rear] = element;    // Add the element to the back
+         rear++;
+    }
+}
+
+void Dequeue(int queue[], int& front, int rear) {  // xóa kh?i ??u hàng ??i
+    if(front == rear)            // Queue is empty
+        printf("UnderFlow\n");
+    else {
+        queue[front] = 0;        // Delete the front element
+        front++;
+    }
+}
